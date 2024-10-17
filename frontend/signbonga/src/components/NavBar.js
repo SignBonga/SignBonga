@@ -14,10 +14,13 @@ const Navbar = () => {
             <Link to="/">Home</Link>
           </li>
           <li className="transition-transform duration-300 transform hover:-translate-y-2 hover:bg-red-600 hover:rounded-full px-4 py-2">
-            <Link to="/about-us">About us</Link>
+            <Link to="/about-us">About Us</Link>
           </li>
           <li className="transition-transform duration-300 transform hover:-translate-y-2 hover:bg-red-600 hover:rounded-full px-4 py-2">
             <Link to="/sign-in">Sign In</Link>
+          </li>
+          <li className="transition-transform duration-300 transform hover:-translate-y-2 hover:bg-red-600 hover:rounded-full px-4 py-2">
+            <Link to="/learning">Learning</Link>
           </li>
         </ul>
       </nav>

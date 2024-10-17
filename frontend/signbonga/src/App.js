@@ -6,18 +6,20 @@ import LandingPage from './components/LandingPage';
 import AboutUs from './components/AboutUs';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
+import LearningPage from './components/Learning';
 
 function App() {
-  return (
-	  <Routes>
+    return (
+	<Routes>
 	    <Route path="/" element={<Layout />}>
 			<Route index element={<LandingPage />} />
 			<Route path="/about-us" element={<AboutUs />} />
 			<Route path="/sign-in" element={<SignIn />} />
 			<Route path="/sign-up" element={<SignUp />} />
+			<Route path="/learning" element={<LearningPage />} />
 	    </Route>
-	  </Routes>
-  );
+	    </Routes>
+    );
 };
 
 export default App;

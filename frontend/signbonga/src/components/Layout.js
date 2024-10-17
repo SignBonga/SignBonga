@@ -7,10 +7,10 @@ const Layout = ({ children }) => {
 		<div className="flex flex-col min-h-screen bg-gray-100">
 			<Navbar />
 		    <main>
-		      <Outlet />
+		        <Outlet />
 		    </main>
 		    <footer className="p-4 text-center">
-		      <p>&copy; 2024 SignBonga. All rights reserved.</p>
+		        <p>&copy; 2024 SignBonga. All rights reserved.</p>
 		    </footer>
 		</div>
 	);
