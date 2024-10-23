@@ -14,6 +14,7 @@ from pathlib import Path
 from decouple import config
 from datetime import timedelta
 import os
+# import whitenoise
 
 
 
@@ -36,14 +37,22 @@ DEBUG = True
 # CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
-        "http://localhost:3000"
+        "http://localhost:3000",
+        "https://signbonga.vercel.app"
         ]
 
 # CORS_ALLOW_HEADERS: List[str] = list(default_headers) + [
 #         "Content-Type"
 #         ] + get_all_cors_headers()
 
-ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = [
+        'https://signbonga.onrender.com',
+        ]
+
+ALLOWED_HOSTS = [
+        '*',
+        'signbonga.onrender.com'
+        ]
 
 
 # Application definition
@@ -73,9 +82,14 @@ INSTALLED_APPS = [
     'drf_spectacular',
 ]
 
+# STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'django.contrib.staticfiles.middleware.StaticFilesMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -84,6 +98,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# STORAGE = {
+#         "staticfiles": {
+#             "BACKEND": "whitenoise.storage.CompressedManifestStaticFileStorage"
+#             },
+#         }
 
 ROOT_URLCONF = 'Tubonge.urls'
 
@@ -170,7 +190,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -186,13 +208,13 @@ SPECTACULAR_SETTINGS = {
         }
 
 
-EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
-EMAIL_HOST = 'mail.smtp2go.com'
-EMAIL_PORT = config('PORT')
-EMAIL_USE_SSL = True
-EMAIL_HOST_USER = config('EMAIL_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
-DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
+# EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
+# EMAIL_HOST = 'mail.smtp2go.com'
+# EMAIL_PORT = config('PORT')
+# EMAIL_USE_SSL = True
+# EMAIL_HOST_USER = config('EMAIL_USER')
+# EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
+# DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
 
 DJOSER = {
         'SERIALIZERS': {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import apiUrl from '../config';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -9,7 +10,7 @@ const SignUp = () => {
     email: '',
     password: '',
     re_password: '',
-    user_type: 'learner',   
+    user_type: '',   
   });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
@@ -24,8 +25,10 @@ const SignUp = () => {
     setError('');
     setSuccess(false);
 
+	console.log(formData);
+
     try {
-      const response = await axios.post('http://localhost:8000/auth/users/', formData);
+      const response = await axios.post(`${apiUrl}/auth/users/`, formData);
       setSuccess(true);
       setTimeout(() => {
         navigate('/sign-in');
